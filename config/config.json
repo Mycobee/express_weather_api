@@ -1,21 +1,21 @@
 {
   "development": {
     "username": "robertstringer",
-    "password": "password",
+    "password": null,
     "database": "weather_api_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "robertstringer",
-    "password": "password",
+    "password": null,
     "database": "weather_api_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "robertstringer",
-    "password": "password",
+    "password": null,
     "database": "weather_api_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
