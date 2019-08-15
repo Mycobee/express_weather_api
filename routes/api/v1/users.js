@@ -3,6 +3,10 @@ var bcrypt = require('bcrypt');
 var saltRounds = 10;
 var router = express.Router();
 var User = require('../../../models').User;
+var TokenGenerator = require( 'token-generator' )({
+        salt: 'your secret ingredient for this magic recipe',
+        timestampMap: 'penqpelwfg', 
+    });
 
 router.post("/", function(req, res, next) {
 	bcrypt.hash(req.body.password, saltRounds, function (err, hash) {	
@@ -14,9 +18,10 @@ router.post("/", function(req, res, next) {
   		User.create({
 				email: req.body.email,
   		  password: hash,
+				api_key: TokenGenerator.generate(),
   		}).then(user => {
   		  res.setHeader("Content-Type", "application/json");
-  		  res.status(201).send(JSON.stringify(user.api_key));
+  		  res.status(201).send(JSON.stringify({api_key: user.api_key}));
   		}).catch(error => {
   		  res.setHeader("Content-Type", "application/json");
   		  res.status(500).send({ error });
